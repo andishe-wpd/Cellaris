@@ -2,7 +2,7 @@ name: Publish to NPM
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
 
 jobs:
   publish:
@@ -15,8 +15,8 @@ jobs:
           registry-url: "https://registry.npmjs.org"
       - name: Configure Git
         run: |
-          git config --global user.email "andishdev@gmail.com"
-          git config --global user.name "andishe"
+          git config user.email "andishdev@gmail.com"
+          git config user.name "andishe"
       - run: npm ci
       - run: npm version patch
       - run: npm publish
