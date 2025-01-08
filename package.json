@@ -12,7 +12,10 @@
     "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
     "test": "jest",
     "lint": "eslint src/**/*.{ts,tsx}",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "version:patch": "npm version patch && git push && git push --tags",
+    "version:minor": "npm version minor && git push && git push --tags",
+    "version:major": "npm version major && git push && git push --tags"
   },
   "keywords": [
     "react",
