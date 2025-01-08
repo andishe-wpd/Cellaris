@@ -13,10 +13,6 @@ jobs:
         with:
           node-version: "18"
           registry-url: "https://registry.npmjs.org"
-      - name: Configure Git
-        run: |
-          git config --global user.email "andishdev@gmail.com"
-          git config --global user.name "andishe"
       - run: npm ci
       - run: npm version patch
       - run: npm publish
