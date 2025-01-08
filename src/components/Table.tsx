@@ -4,6 +4,7 @@ import { TableProps } from "../types";
 export const Table: React.FC<TableProps> = ({ data, columns }) => {
   return (
     <table>
+      {/* this is a fake update */}
       <thead>
         <tr>
           {columns.map((column) => (
