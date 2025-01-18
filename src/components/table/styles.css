@@ -1,0 +1,39 @@
+@import 'rsuite/dist/rsuite.css';
+
+.rs-tree-view {
+  height: unset !important;
+  max-height: unset !important;
+}
+/* .rs-tree-node {
+  height: 48px;
+} */
+.rs-tree-node-active .rs-tree-node-label {
+  background-color: unset !important;
+  color: unset;
+  font-weight: unset;
+}
+
+.rs-tree-node-label:hover,
+.rs-tree-node-label:focus,
+.rs-tree-node-label.rs-tree-node-label-focus {
+  color: unset;
+  background-color: unset !important;
+}
+
+.rs-tree-node-toggle {
+  width: 30px;
+}
+
+.rs-tree-node-toggle > .rs-tree-node-toggle-icon {
+  height: 24px;
+  width: 24px;
+}
+
+.rs-tree-group {
+  padding-left: 40px;
+}
+
+body,
+html {
+  @apply font-body h-full w-full overflow-hidden;
+}
