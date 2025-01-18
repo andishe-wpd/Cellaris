@@ -5,11 +5,12 @@ import Search from "@/components/table/filter/serach.tsx";
 import Header from "@/components/table/header";
 import BodyTable from "@/components/table/main/body.tsx";
 import HeadTable from "@/components/table/main/head.tsx";
-import PaginateCustom from "@/components/table/paginate";
+// import PaginateCustom from "@/components/table/paginate";
 import { useEffect, useState } from "react";
 
 import Card from "./Card";
 import "./styles.css";
+import ReactPaginate from "react-paginate";
 
 const Table = ({
   infoTable = null,
@@ -65,7 +66,9 @@ const Table = ({
   const [showSearch, setShowSearch] = useState(false);
   const [filters, setFilters] = useState([]);
   const [isTableView, setIsTableView] = useState(true);
-
+  const [pageSizeState, setpageSizeState] = useState(
+    pageSize ? pageSize : defaultPageSize
+  );
   const handleSelectAll = () => {
     setIsCheckAll(!isCheckAll);
     setIsCheck(data.map((li) => li[checkListId]));
@@ -167,6 +170,31 @@ const Table = ({
     setForcePage(event.selected);
     setFilter((prev) => ({ ...prev, page }));
   };
+
+  const handlePageSize = (num = pageSize ? pageSize : defaultPageSize) => {
+    setpageSizeState(num);
+    if (filter?.page > 0) {
+      setForcePage(0);
+    }
+  };
+
+  useEffect(() => {
+    if (pageSize != defaultPageSize) {
+      handlePageSize(pageSize ? pageSize : defaultPageSize);
+    }
+  }, [pageSize, defaultPageSize]);
+
+  useEffect(() => {
+    if (refresh) {
+      setpageSizeState(pageSize ? pageSize : defaultPageSize);
+      handlePageSize(pageSize ? pageSize : defaultPageSize);
+    }
+  }, [refresh]);
+
+  const page = currentPage || 1;
+  const size = pageSize || defaultPageSize;
+  const total = totalCount || 0;
+
   return (
     <div className="border border-neutral-5 rounded-2xl my-4">
       <Header
@@ -290,18 +318,48 @@ const Table = ({
       </div>
       {data?.length > 0 && !noPagination && (
         <div className="pt-4">
-          <PaginateCustom
-            handlePageClick={handlePageClick}
-            forcePage={forcePage}
-            filter={filter}
-            refresh={refresh}
-            setForcePage={setForcePage}
-            pageSize={pageSize}
-            currentPage={currentPage}
-            totalPage={totalPage}
-            totalCount={totalCount}
-            defaultPageSize={pageSize ? pageSize : defaultPageSize}
-          />
+          <div
+            className={`flex items-center justify-between px-3 h-[55px] mb-2`}
+          >
+            <div className="flex">
+              <div className="mr-5 flex items-center text-sm">
+                <div className="text-gray-500">نمایش</div>
+                <div className="text-black mx-1">
+                  {(page != 1 ? page + page * size - size - page + 1 : page) ||
+                    0}
+                  {" تا "}
+                  {(page + page * size - page < total
+                    ? page + page * size - page
+                    : total) || 0}
+                </div>
+                <div className="text-gray-500">از</div>
+                <div className="text-black mx-1">{total || 0}</div>
+                <div className="text-gray-500">رکورد</div>
+              </div>
+            </div>
+
+            <ReactPaginate
+              nextLabel={
+                <div className="border-[0.5px] border-neutral-5 bg-neutral-3 rounded-[6px] py-2 px-3 text-[16px]">
+                  بعدی
+                </div>
+              }
+              onPageChange={handlePageClick}
+              pageRangeDisplayed={2}
+              pageCount={totalPage}
+              forcePage={forcePage}
+              previousLabel={
+                <div className="border-[0.5px] border-neutral-5 bg-neutral-3 rounded-[6px] py-2 px-3 text-[16px]">
+                  قبلی
+                </div>
+              }
+              activeClassName="activePage bg-primary-500 border-primary-500 [&>a]:text-white text-[16px]"
+              pageClassName="box-border bg-neutral-3 [&>a]:w-[40px] [&>a]:h-[40px] border-[0.5px] border-neutral-5 [&>a]:p-2 [&>a] rounded-[6px] [&>a]:flex [&>a]:justify-center [&>a]:items-center cursor-pointer text-[16px]"
+              className="pagination [&>li]:text-neutral-10 [&>li]:!mx-[2px]"
+              previousClassName="page-link"
+              disabledClassName="!text-neutral-7"
+            />
+          </div>
         </div>
       )}
     </div>
