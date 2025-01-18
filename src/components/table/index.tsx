@@ -279,7 +279,7 @@ const Table = ({
             </div>
           )}
       </div>
-      {data?.length > 0 && !noPagination && (
+      {/* {data?.length > 0 && !noPagination && (
         <div className="pt-4">
           <PaginateCustom
             handlePageClick={handlePageClick}
@@ -295,7 +295,7 @@ const Table = ({
             defaultPageSize={pageSize ? pageSize : defaultPageSize}
           />
         </div>
-      )}
+      )} */}
     </div>
   );
 };
