@@ -1,6 +1,4 @@
-@import 'rsuite/dist/rsuite.css';
-
-.rs-tree-view {
+/* .rs-tree-view {
   height: unset !important;
   max-height: unset !important;
 }
@@ -31,7 +29,7 @@
 
 .rs-tree-group {
   padding-left: 40px;
-}
+} */
 
 body,
 html {
