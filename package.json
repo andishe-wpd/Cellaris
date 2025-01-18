@@ -47,6 +47,7 @@
   },
   "version": "0.2.19",
   "dependencies": {
+    "@types/react-paginate": "^7.1.4",
     "moment-jalaali": "^0.10.4",
     "react-paginate": "^8.2.0"
   }
