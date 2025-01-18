@@ -1,6 +1,9 @@
-import { useState } from 'react';
-import { useEffect } from 'react';
-import ReactPaginate from 'react-paginate';
+import React from "react";
+
+
+import { useState } from "react";
+import { useEffect } from "react";
+import ReactPaginate from "react-paginate";
 
 const PaginateCustom = ({
   handlePageClick,
@@ -18,7 +21,9 @@ const PaginateCustom = ({
   // noStyle = false,
 }) => {
   // const [flagCountPage, setflagCountPage] = useState(false);
-  const [pageSizeState, setpageSizeState] = useState(pageSize ? pageSize : defaultPageSize);
+  const [pageSizeState, setpageSizeState] = useState(
+    pageSize ? pageSize : defaultPageSize
+  );
 
   const handlePageSize = (num = pageSize ? pageSize : defaultPageSize) => {
     setpageSizeState(num);
@@ -34,7 +39,7 @@ const PaginateCustom = ({
     if (pageSize != defaultPageSize) {
       handlePageSize(pageSize ? pageSize : defaultPageSize);
     }
-  }, [pageSize]);
+  }, [pageSize, defaultPageSize, handlePageSize]);
   useEffect(() => {
     if (refresh) {
       setpageSizeState(pageSize ? pageSize : defaultPageSize);
@@ -42,9 +47,9 @@ const PaginateCustom = ({
     }
   }, [refresh]);
 
-  const page = currentPage;
-  const size = pageSize;
-  const total = totalCount;
+  const page = currentPage || 1;
+  const size = pageSize || defaultPageSize;
+  const total = totalCount || 0;
 
   return (
     <>
@@ -54,8 +59,10 @@ const PaginateCustom = ({
             <div className="text-gray-500">نمایش</div>
             <div className="text-black mx-1">
               {(page != 1 ? page + page * size - size - page + 1 : page) || 0}
-              {' تا '}
-              {(page + page * size - page < total ? page + page * size - page : total) || 0}
+              {" تا "}
+              {(page + page * size - page < total
+                ? page + page * size - page
+                : total) || 0}
             </div>
             <div className="text-gray-500">از</div>
             <div className="text-black mx-1">{total || 0}</div>
@@ -80,10 +87,10 @@ const PaginateCustom = ({
           }
           renderOnZeroPageCount={null}
           activeClassName={
-            'activePage bg-primary-500 border-primary-500 [&>a]:text-white text-[16px]'
+            "activePage bg-primary-500 border-primary-500 [&>a]:text-white text-[16px]"
           }
           pageClassName={
-            'box-border bg-neutral-3 [&>a]:w-[40px] [&>a]:h-[40px] border-[0.5px] border-neutral-5 [&>a]:p-2 [&>a] rounded-[6px] [&>a]:flex [&>a]:justify-center [&>a]:items-center cursor-pointer text-[16px]'
+            "box-border bg-neutral-3 [&>a]:w-[40px] [&>a]:h-[40px] border-[0.5px] border-neutral-5 [&>a]:p-2 [&>a] rounded-[6px] [&>a]:flex [&>a]:justify-center [&>a]:items-center cursor-pointer text-[16px]"
           }
           className="pagination [&>li]:text-neutral-10 [&>li]:!mx-[2px]"
           previousClassName="page-link"
