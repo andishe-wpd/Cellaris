@@ -343,25 +343,13 @@ const Table = ({
             </div>
 
             <ReactPaginate
-              nextLabel={
-                <div className="border-[0.5px] border-neutral-5 bg-neutral-3 rounded-[6px] py-2 px-3 text-[16px]">
-                  بعدی
-                </div>
-              }
+              breakLabel="..."
+              nextLabel="next >"
               onPageChange={handlePageClick}
-              pageRangeDisplayed={2}
-              pageCount={totalPage}
-              forcePage={forcePage}
-              previousLabel={
-                <div className="border-[0.5px] border-neutral-5 bg-neutral-3 rounded-[6px] py-2 px-3 text-[16px]">
-                  قبلی
-                </div>
-              }
-              activeClassName="activePage bg-primary-500 border-primary-500 [&>a]:text-white text-[16px]"
-              pageClassName="box-border bg-neutral-3 [&>a]:w-[40px] [&>a]:h-[40px] border-[0.5px] border-neutral-5 [&>a]:p-2 [&>a] rounded-[6px] [&>a]:flex [&>a]:justify-center [&>a]:items-center cursor-pointer text-[16px]"
-              className="pagination [&>li]:text-neutral-10 [&>li]:!mx-[2px]"
-              previousClassName="page-link"
-              disabledClassName="!text-neutral-7"
+              pageRangeDisplayed={5}
+              pageCount={10}
+              previousLabel="< previous"
+              renderOnZeroPageCount={null}
             />
           </div>
         </div>
