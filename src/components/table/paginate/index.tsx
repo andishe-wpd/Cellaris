@@ -1,6 +1,5 @@
 import React from "react";
 
-
 import { useState } from "react";
 import { useEffect } from "react";
 import ReactPaginate from "react-paginate";
@@ -76,16 +75,16 @@ const PaginateCustom = ({
               بعدی
             </div>
           }
-          // onPageChange={handlePageClick}
-          // pageRangeDisplayed={2}
-          // pageCount={totalPage || 1}
-          // forcePage={forcePage}
+          onPageChange={() => {}}
+          pageRangeDisplayed={2}
+          pageCount={1}
+          forcePage={1}
           previousLabel={
             <div className="border-[0.5px] border-neutral-5 bg-neutral-3 rounded-[6px] py-2 px-3 text-[16px]">
               قبلی
             </div>
           }
-          renderOnZeroPageCount={null}
+          // renderOnZeroPageCount={null}
           activeClassName={
             "activePage bg-primary-500 border-primary-500 [&>a]:text-white text-[16px]"
           }
