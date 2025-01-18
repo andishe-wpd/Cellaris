@@ -45,7 +45,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.2.12",
+  "version": "0.2.13",
   "dependencies": {
     "moment-jalaali": "^0.10.4",
     "react-paginate": "^8.2.0"
