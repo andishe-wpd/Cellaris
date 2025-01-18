@@ -173,7 +173,11 @@ const Table = ({
 
   const handlePageSize = (num = pageSize ? pageSize : defaultPageSize) => {
     setpageSizeState(num);
-    if (filter?.page > 0) {
+    if (
+      "page" in filter &&
+      typeof filter.page === "number" &&
+      filter.page > 0
+    ) {
       setForcePage(0);
     }
   };
