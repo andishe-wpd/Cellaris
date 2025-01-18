@@ -5,7 +5,7 @@ import ReactPaginate from 'react-paginate';
 const PaginateCustom = ({
   handlePageClick,
   forcePage,
-  setFilter = () => {},
+  // setFilter = () => {},
   filter,
   setForcePage,
   refresh,
@@ -23,10 +23,10 @@ const PaginateCustom = ({
   const handlePageSize = (num = pageSize ? pageSize : defaultPageSize) => {
     setpageSizeState(num);
     if (filter?.page > 0) {
-      setFilter(prev => ({ ...prev, pageSize: num }));
+      // setFilter(prev => ({ ...prev, pageSize: num }));
       setForcePage(0);
     } else {
-      setFilter(prev => ({ ...prev, pageSize: num }));
+      // setFilter(prev => ({ ...prev, pageSize: num }));
     }
   };
 
