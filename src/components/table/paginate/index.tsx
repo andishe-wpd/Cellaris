@@ -1,5 +1,5 @@
 import React from "react";
-import ReactPaginate from "react-paginate";
+import ReactPaginate from "./customPaginate";
 
 interface PaginateCustomProps {
   handlePageClick: (selectedItem: { selected: number }) => void;
