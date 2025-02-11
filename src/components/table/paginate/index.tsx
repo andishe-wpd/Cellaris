@@ -1,5 +1,5 @@
 import React from "react";
-import ReactPaginate from "react-paginate";
+import ReactPaginate from "react-paginate/dist/react-paginate";
 
 interface PaginateCustomProps {
   handlePageClick: (selectedItem: { selected: number }) => void;
@@ -53,6 +53,7 @@ const PaginateCustom: React.FC<PaginateCustomProps> = ({
   const page = currentPage || 1;
   const size = pageSize || defaultPageSize;
   const total = totalCount || 0;
+  console.log("ReactPaginate:", ReactPaginate);
 
   return (
     <div className={`flex items-center justify-between px-3 h-[55px] mb-2`}>
@@ -71,22 +72,16 @@ const PaginateCustom: React.FC<PaginateCustomProps> = ({
           <div className="text-gray-500">رکورد</div>
         </div>
       </div>
-        <ReactPaginate
-          nextLabel="بعدی"
-          previousLabel="قبلی"
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={2}
-          pageCount={totalPage}
-          forcePage={forcePage}
-          renderOnZeroPageCount={null}
-          containerClassName="pagination [&>li]:text-neutral-10 [&>li]:!mx-[2px]"
-          pageClassName="box-border bg-neutral-3 [&>a]:w-[40px] [&>a]:h-[40px] border-[0.5px] border-neutral-5 [&>a]:p-2 [&>a] rounded-[6px] [&>a]:flex [&>a]:justify-center [&>a]:items-center cursor-pointer text-[16px]"
-          activeClassName="activePage bg-primary-500 border-primary-500 [&>a]:text-white text-[16px]"
-          previousClassName="page-link border-[0.5px] border-neutral-5 bg-neutral-3 rounded-[6px] py-2 px-3 text-[16px]"
-          nextClassName="page-link border-[0.5px] border-neutral-5 bg-neutral-3 rounded-[6px] py-2 px-3 text-[16px]"
-          disabledClassName="!text-neutral-7"
-        />
-      </div>
+      <ReactPaginate
+        nextLabel="بعدی"
+        previousLabel="قبلی"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={2}
+        pageCount={totalPage}
+        forcePage={forcePage}
+        renderOnZeroPageCount={null}
+      />
+    </div>
   );
 };
 
