@@ -1,15 +1,15 @@
-import { EmptyResponse } from '@/assets/icon';
-import Loading from '@/components/loading';
-import Filter from '@/components/table/filter';
-import Search from '@/components/table/filter/serach.tsx';
-import Header from '@/components/table/header';
-import BodyTable from '@/components/table/main/body.tsx';
-import HeadTable from '@/components/table/main/head.tsx';
-import PaginateCustom from '@/components/table/paginate';
-import { useEffect, useState } from 'react';
+import { EmptyResponse } from "@/assets/icon";
+import Loading from "@/components/loading";
+import Filter from "@/components/table/filter";
+import Search from "@/components/table/filter/serach.tsx";
+import Header from "@/components/table/header";
+import BodyTable from "@/components/table/main/body.tsx";
+import HeadTable from "@/components/table/main/head.tsx";
+import PaginateCustom from "@/components/table/paginate";
+import { useEffect, useState } from "react";
 
-import Card from './Card';
-import './styles.css';
+import Card from "./Card";
+import "./styles.css";
 
 const Table = ({
   infoTable = null,
@@ -41,15 +41,15 @@ const Table = ({
   isExpandCondition = null,
   getCollapseContent = null,
   selectable = false,
-  checkListId = 'id',
+  checkListId = "id",
   isCheck = null,
   setIsCheck = null,
-  title = '',
+  title = "",
   headerCustomButton = null,
   enableTableRowSelector = true,
   enableTableCardSelector = true,
   emptyResponseAction = <></>,
-  searchBarPlaceHoler = '',
+  searchBarPlaceHoler = "",
   menuItems = null,
   cardHeaderButtonHandler = null,
   cardFooterButtonHandler = null,
@@ -68,17 +68,17 @@ const Table = ({
 
   const handleSelectAll = () => {
     setIsCheckAll(!isCheckAll);
-    setIsCheck(data.map(li => li[checkListId]));
+    setIsCheck(data.map((li) => li[checkListId]));
     if (isCheckAll) {
       setIsCheck([]);
     }
   };
 
-  const handleClick = e => {
+  const handleClick = (e) => {
     const { id, checked } = e.target;
     setIsCheck([...isCheck, id]);
     if (!checked) {
-      setIsCheck(isCheck.filter(item => item !== id));
+      setIsCheck(isCheck.filter((item) => item !== id));
     }
   };
 
@@ -95,9 +95,9 @@ const Table = ({
           ...filter,
         };
     const params = new URLSearchParams();
-    filters.forEach(item => {
+    filters.forEach((item) => {
       params.append(
-        'Filters',
+        "Filters",
         JSON.stringify({
           criteria: item.status,
           value: item.value,
@@ -145,7 +145,7 @@ const Table = ({
 
   const handleClickFilter = () => {
     let obj = {};
-    Object.keys(filterChange).map(itm => {
+    Object.keys(filterChange).map((itm) => {
       if (filterChange[itm] !== undefined && filterChange[itm] !== null) {
         obj = { ...obj, [itm]: filterChange[itm] };
       }
@@ -153,18 +153,19 @@ const Table = ({
     setForcePage(0);
 
     if (showPopupFilter) {
-      setFilter(prev => ({ ...prev, page: 1, ...obj }));
-      urlCallbackFilter && setFilterCallback(prev => ({ ...prev, ...obj }));
+      setFilter((prev) => ({ ...prev, page: 1, ...obj }));
+      urlCallbackFilter && setFilterCallback((prev) => ({ ...prev, ...obj }));
     } else {
-      setFilter(prev => ({ ...prev, page: 1, ...filterChange }));
-      urlCallbackFilter && setFilterCallback(prev => ({ ...prev, ...filterChange }));
+      setFilter((prev) => ({ ...prev, page: 1, ...filterChange }));
+      urlCallbackFilter &&
+        setFilterCallback((prev) => ({ ...prev, ...filterChange }));
     }
   };
 
-  const handlePageClick = event => {
+  const handlePageClick = (event) => {
     const page = event.selected + 1;
     setForcePage(event.selected);
-    setFilter(prev => ({ ...prev, page }));
+    setFilter((prev) => ({ ...prev, page }));
   };
   return (
     <div className="border border-neutral-5 rounded-2xl my-4">
@@ -187,10 +188,14 @@ const Table = ({
           <Search
             setShowSearch={setShowSearch}
             searchBarPlaceHoler={searchBarPlaceHoler}
-            searchTxt={(v: any) => setFilter(prev => ({ ...prev, search: v }))}
+            searchTxt={(v: any) =>
+              setFilter((prev) => ({ ...prev, search: v }))
+            }
           />
         )}
-        {filters?.length > 0 && <Filter setFilters={setFilters} filters={filters} />}
+        {filters?.length > 0 && (
+          <Filter setFilters={setFilters} filters={filters} />
+        )}
 
         {isTableView === true ? (
           <table className="lg:w-full w-[1000px]">
@@ -232,8 +237,8 @@ const Table = ({
               <tbody>
                 <tr>
                   <td colSpan={infoTable?.length}>
-                    <p className={'text-center my-3'}>
-                      {resultData?.data?.message || 'خطا در دریافت اطلاعات'}
+                    <p className={"text-center my-3"}>
+                      {resultData?.data?.message || "خطا در دریافت اطلاعات"}
                     </p>
                   </td>
                 </tr>
@@ -269,7 +274,11 @@ const Table = ({
           !resultData?.isLoading &&
           !resultData?.isFetching && (
             <div className="flex justify-center items-center gap-4 w-full">
-              <div className={'text-center flex  flex-col items-center gap-4 py-12'}>
+              <div
+                className={
+                  "text-center flex  flex-col items-center gap-4 py-12"
+                }
+              >
                 <EmptyResponse />
                 <div className="text-subtitleBase text-neutral-8">
                   در حال حاضر اطلاعاتی ثبت نشده است
@@ -279,7 +288,7 @@ const Table = ({
             </div>
           )}
       </div>
-      {/* {data?.length > 0 && !noPagination && (
+      {data?.length > 0 && !noPagination && (
         <div className="pt-4">
           <PaginateCustom
             handlePageClick={handlePageClick}
@@ -295,7 +304,7 @@ const Table = ({
             defaultPageSize={pageSize ? pageSize : defaultPageSize}
           />
         </div>
-      )} */}
+      )}
     </div>
   );
 };
