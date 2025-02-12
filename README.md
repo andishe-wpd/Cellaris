@@ -1,4 +1,4 @@
-```
+
 # Cellaris
 
 A modern and efficient cellular automaton simulation framework built for researchers and enthusiasts.
@@ -176,9 +176,6 @@ Community
 
 Made with ❤️ by the Cellaris Team
 
-```
-
 This enhanced version includes more technical details, examples, and structured information that will help users better understand and utilize the Cellaris framework.
 
-```
 
